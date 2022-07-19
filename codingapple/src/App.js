@@ -22,4 +22,4 @@ function App() {
 
 export default App;
 //return()안에는 병룔로
-//태그 2개 이상 기입금지
+//태그 2개 이상 기입금지 
