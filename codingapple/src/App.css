@@ -8,8 +8,15 @@ div {
 
 .list {
   padding-left: 20px;
-  text-align:left;
+  text-align: left;
   border-bottom: 1px solid gray;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #eee;
+  text-align-last: left;
 }
 .black-nav {
   display: flex;
@@ -17,7 +24,6 @@ div {
   width: 100%;
   color: white;
   padding-left: 20px;
-
 }
 .App-logo {
   height: 40vmin;

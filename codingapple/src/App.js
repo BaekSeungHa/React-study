@@ -15,7 +15,7 @@ function App() {
     let newOrder = [...title].sort();
     setTitle(newOrder);
   }
-
+  //함수는 return문 밖에서 사용
   return (
     <div className="App">
       <div className="black-nav">
@@ -47,14 +47,27 @@ function App() {
         </h4>
         <p>2월 17일 발행</p>
       </div>
+
       <div className="list">
         <h4>{title[1]}</h4>
         <p>2월 17일 발행</p>
       </div>
+
       <div className="list">
         <h4>{title[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+      <Modal></Modal>
+    </div>
+  );
+}
+
+function Modal() {
+  return (
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
