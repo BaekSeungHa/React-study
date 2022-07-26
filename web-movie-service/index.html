@@ -18,7 +18,7 @@
         };
         /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
         const Button = () => (
-            <button style={{
+            <button style={{    
             backgroundColor: "tomato",
         }}
             onClick={ () => console.log('im clicked')}
@@ -27,11 +27,13 @@
         </button> 
         );
         /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-        const Container = <div>
+        const Container = () => (
+            <div>
             <Title /> 
             <Button />
             </div>
-        ReactDOM.render(Container, root);
+        );
+        ReactDOM.render(<Container />, root);
         
     </script>
 </body>
