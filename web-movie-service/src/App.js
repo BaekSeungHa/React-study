@@ -1,16 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const onClick = () => setValue((prev) => prev + 1);
-  console.log("i run all the time");
-  useEffect(() => {
-    console.log("CALL THE API....");
-  }, []);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      return;
+    }
+    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDo("");
+  };
   return (
     <div>
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      <h1>My ToDos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="what your to do"
+        />
+        <button>Add To Do</button>
+      </form>
     </div>
   );
 }
