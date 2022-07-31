@@ -10,6 +10,7 @@ function App() {
     "파이썬독학",
   ]);
   let [따봉, 따봉변경] = useState(0);
+  let [modal, setModal] = useState(false);
 
   function orderTitle() {
     let newOrder = [...title].sort();
@@ -54,10 +55,24 @@ function App() {
       </div>
 
       <div className="list">
-        <h4>{title[2]}</h4>
+        <h4
+          onClick={() => {
+            setModal(true);
+          }}
+        >
+          {title[2]}
+        </h4>
         <p>2월 17일 발행</p>
       </div>
-      <Modal></Modal>
+      <button
+        onClick={() => {
+          setModal(!modal);
+        }}
+      >
+        {" "}
+        {title[0]}{" "}
+      </button>
+      {modal == true ? <Modal></Modal> : null}
     </div>
   );
 }
