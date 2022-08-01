@@ -9,8 +9,12 @@ function App() {
     "강남 우동맛집",
     "파이썬독학",
   ]);
-  let [따봉, 따봉변경] = useState(0);
+  let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+
+  //map //1. array 자료 갯수만큼 함수안의 코드 실행해줌
+  //2. 함수의 파라미터는 array안에 있던 자료임
+  //3. return에 뭐 적으면 array로 담아줌
 
   function orderTitle() {
     let newOrder = [...title].sort();
@@ -34,7 +38,7 @@ function App() {
       >
         글수정
       </button>
-      <div className="list">
+      {/* <div className="list">
         <h4>
           {title[0]}
           <span
@@ -63,16 +67,29 @@ function App() {
           {title[2]}
         </h4>
         <p>2월 17일 발행</p>
-      </div>
-      <button
-        onClick={() => {
-          setModal(!modal);
-        }}
-      >
-        {" "}
-        {title[0]}{" "}
-      </button>
-      {modal == true ? <Modal></Modal> : null}
+      </div> */}
+
+      {title.map(function (a, i) {
+        //(a, i)를 쓸시 <h4> {글제목[i]} </h4> //(a)를 쓸시 그냥 <h4>{a}</h4>
+        return (
+          <div className="list">
+            <h4>
+              {title[i]}
+              <span
+                onClick={() => {
+                  let copy = [...따봉];
+                  copy[i] = copy[i] + 1;
+                  따봉변경(copy);
+                }}
+              >
+                👍
+              </span>
+              {따봉[i]}
+            </h4>
+            <p>2월 17일 발행</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
