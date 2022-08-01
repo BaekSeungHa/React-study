@@ -1,3 +1,5 @@
+/* eslint-disable*/
+
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
@@ -15,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <div className="black-nav">
-        <h4>승하's 블로그</h4>
+        <h4>tech blog</h4>
       </div>
       {글제목.map(function (a, i) {
         return (
@@ -59,6 +61,11 @@ export default App;
 
 /* <button onClick={orderTitle}>가나다순으로 정렬하기</button> */
 
+// function orderTitle() {
+
+//   let newOrder = [...title].sort();
+//   setTitle(newOrder);
+// }
 /* <button
         onClick={() => {
           let copy = [...title];
@@ -68,7 +75,7 @@ export default App;
       >
         글수정
       </button> */
-
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 /* <div className="list">
         <h4>
           {title[0]}
@@ -99,15 +106,10 @@ export default App;
         </h4>
         <p>2월 17일 발행</p>
       </div> */
-
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //return()안에는 병룔로
 //태그 2개 이상 기입금지
 //map //1. array 자료 갯수만큼 함수안의 코드 실행해줌
 //2. 함수의 파라미터는 array안에 있던 자료임
 //3. return에 뭐 적으면 array로 담아줌
-
-// function orderTitle() {
-//   let newOrder = [...title].sort();
-//   setTitle(newOrder);
-// }
 //함수는 return문 밖에서 사용
