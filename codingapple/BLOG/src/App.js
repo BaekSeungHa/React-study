@@ -11,9 +11,16 @@ function App() {
     "강남 우동맛집",
     "파이썬독학",
   ]);
-  let [따봉, 따봉변경] = useState(0);
+  let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+
+  function addLike(i) {
+    let copy = copy[i] + 1;
+    console.log(copy);
+    console.log(따봉);
+    따봉변경(copy);
+  }
   return (
     <div className="App">
       <div className="black-nav">
@@ -31,12 +38,14 @@ function App() {
               {글제목[i]}
               <span
                 onClick={() => {
-                  따봉변경(따봉 + 1);
+                  let copy = [...따봉];
+                  copy[i] = copy[i] + 1;
+                  따봉변경(copy);
                 }}
               >
                 👍
               </span>
-              {따봉}
+              {따봉[i]}
             </h4>
             <p>2월 17일 발행</p>
           </div>
