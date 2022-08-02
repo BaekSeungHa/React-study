@@ -8,6 +8,7 @@ div {
 
 .list {
   padding-left: 20px;
+  background-color: gray;
   text-align: left;
   border-bottom: 1px solid gray;
 }
@@ -20,10 +21,10 @@ div {
 }
 .black-nav {
   display: flex;
-  background: beige;
+  background: orange;
   width: 100%;
-  color: skyblue;
+  color: blue;
   padding-left: 20px;
   font-size: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
 }
