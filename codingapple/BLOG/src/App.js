@@ -1,6 +1,5 @@
 /* eslint-disable*/
 
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
 
@@ -11,21 +10,34 @@ function App() {
     "외쳐 수찬갓",
     "쵸비우승",
   ]);
-  let [따봉, 따봉변경] = useState([0, 0, 0]);
-  let [modal, setModal] = useState(false);
-  let [title, setTitle] = useState(0);
-  let [입력값, 입력값변경] = useState("");
-  let [writeDate, setWriteDate] = useState("");
+  let [따봉, 따봉변경] = useState([0, 0, 0]); //따봉
+  let [modal, setModal] = useState(false); //모달
+  let [title, setTitle] = useState(0); //제목
+  let [입력값, 입력값변경] = useState(""); //input에 대한 입력값
+  let [writeDate, setWriteDate] = useState(""); //??
   return (
     <div className="App">
       <div className="black-nav">
         <h4>tech blog</h4>
       </div>
+
+      <button
+        onClick={() => {
+          let copy = [...글제목];
+          copy[0] = "역시이상호";
+          글제목변경(copy);
+        }}
+      >
+        역시이상호로 바꾸기
+      </button>
+
       {글제목.map(function (a, i) {
+        //글제목 갯수만큼 html생성
         return (
           <div className="list" key={i}>
             <h4
               onClick={() => {
+                //제목 클릭시 모달을 i번째 modal을 띄워줌
                 setModal(!modal);
                 setTitle(i);
               }}
@@ -33,9 +45,9 @@ function App() {
               {글제목[i]}
               <span
                 onClick={(e) => {
-                  e.stopPropagation();
-                  let copy = [...따봉];
-                  copy[i] = copy[i] + 1;
+                  e.stopPropagation(); //상위html로 가는 랜더링을 막아준다
+                  let copy = [...따봉]; //따봉 복사
+                  copy[i] = copy[i] + 1; //복사한 i번째 따봉을 + 1해줌
                   따봉변경(copy);
                 }}
               >
@@ -43,11 +55,13 @@ function App() {
               </span>
               {따봉[i]}
             </h4>
-            <p>2월 17일 발행</p>
+            <p>8월3일 </p>
+
             <button
               onClick={() => {
+                //삭제
                 let copy = [...글제목];
-                copy.splice(i, 1);
+                copy.splice(i, 1); //splice는 삭제할 항목
                 글제목변경(copy);
               }}
             >
@@ -56,11 +70,13 @@ function App() {
           </div>
         );
       })}
+
       <input
         onChange={(e) => {
           입력값변경(e.target.value);
         }}
       />
+
       <button
         onClick={() => {
           let copy = [...글제목];
@@ -84,10 +100,12 @@ function App() {
       >
         story upload
       </button>
+
       {modal == true ? <Modal title={title} 글제목={글제목} /> : null}
     </div>
   );
 
+  //Modal state만들기
   function Modal(props) {
     return (
       <div className="modal">
