@@ -3,7 +3,8 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { useState } from "react";
 import data from "./data";
 import { Routes, Route, Link } from "react-router-dom";
-import Detail from "./Detail";
+import Detail from "./routes/Detail";
+import axios from "axios";
 function App() {
   let [shoes] = useState(data);
 
@@ -36,6 +37,20 @@ function App() {
                   })}
                 </div>
               </div>
+              <button
+                onClick={() => {
+                  axios
+                    .get("hㅁㄴㅇple1.github.io/shop/data2.json")
+                    .then((data) => {
+                      console.log(data.data);
+                    })
+                    .catch(() => {
+                      console.log("실패함 ㅅㄱ");
+                    });
+                }}
+              >
+                서버값
+              </button>
             </>
           }
         />
