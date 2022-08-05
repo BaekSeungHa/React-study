@@ -1,13 +1,17 @@
-import "./App.css";
+import { createContext, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { useState } from "react";
+import "./App.css";
 import data from "./data";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Detail from "./routes/Detail";
 import axios from "axios";
-function App() {
-  let [shoes] = useState(data);
+import Cart from "./routes/Cart";
 
+let Context1 = createContext();
+
+function App() {
+  let [shoes, setShoes] = useState(data);
+  let [재고] = useState([10, 11, 12]);
   return (
     <div className="App">
       <Navbar bg="lgiht" variant="light">
@@ -40,26 +44,34 @@ function App() {
               <button
                 onClick={() => {
                   axios
-                    .get("hㅁㄴㅇple1.github.io/shop/data2.json")
-                    .then((data) => {
-                      console.log(data.data);
-                    })
-                    .catch(() => {
-                      console.log("실패함 ㅅㄱ");
+                    .get("https://codingapple1.github.io/shop/data2.json")
+                    .then((결과) => {
+                      let copy = [...shoes, ...결과.data];
+                      setShoes(copy);
                     });
                 }}
               >
-                서버값
+                더보기
               </button>
             </>
           }
         />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );
 
+  function About() {
+    return (
+      <div>
+        <h4>회사정보임</h4>
+      </div>
+    );
+  }
+
   function Card(props) {
+    let navigate = useNavigate();
     return (
       <div className="col-md-4">
         <img
