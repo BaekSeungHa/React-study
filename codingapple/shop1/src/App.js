@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import data from "./data";
@@ -7,11 +7,21 @@ import Detail from "./routes/Detail";
 import axios from "axios";
 import Cart from "./routes/Cart";
 
-let Context1 = createContext();
-
 function App() {
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify([]));
+  }, []);
+
+  let obg = { name: "kim" };
+  localStorage.setItem("data", JSON.stringify(obg));
+  let 꺼낸거 = localStorage.getItem("data");
+  console.log(꺼낸거);
+  console.log(JSON.parse(꺼낸거).name);
+
   let [shoes, setShoes] = useState(data);
   let [재고] = useState([10, 11, 12]);
+  let navigate = useNavigate();
+
   return (
     <div className="App">
       <Navbar bg="lgiht" variant="light">
