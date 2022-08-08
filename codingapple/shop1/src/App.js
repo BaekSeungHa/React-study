@@ -6,7 +6,6 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Detail from "./routes/Detail";
 import axios from "axios";
 import Cart from "./routes/Cart";
-import { useQuery } from "react-query";
 
 function App() {
   useEffect(() => {
@@ -16,12 +15,6 @@ function App() {
   let [shoes, setShoes] = useState(data);
   let [재고] = useState([10, 11, 12]);
   let navigate = useNavigate();
-
-  let result = useQuery("작명", () =>
-    axios.get("https://codingapple1.github.io/userdata.json").then((a) => {
-      return a.data;
-    })
-  );
 
   return (
     <div className="App">
@@ -44,9 +37,7 @@ function App() {
               Cart
             </Nav.Link>
           </Nav>
-          <Nav className="ms-auto">
-            {result.isLoading ? "로딩중" : result.data.name}
-          </Nav>
+          <Nav className="ms-auto">h1</Nav>
         </Container>
       </Navbar>
 
