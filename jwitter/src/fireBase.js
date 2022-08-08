@@ -1,9 +1,14 @@
+import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBawr9xCzePXrpcag4ddXZO7oF0UaW0qt8",
-  authDomain: "jwitter-ab0a9.firebaseapp.com",
-  projectId: "jwitter-ab0a9",
-  storageBucket: "jwitter-ab0a9.appspot.com",
-  messagingSenderId: "108261627705",
-  appId: "1:108261627705:web:4e4aa431d27f5c15b5bae8",
+  apiKey: "your apiKey",
+  authDomain: "nwitter-xxxx.firebaseapp.com",
+  projectId: "nwitter-xxxx",
+  storageBucket: "nwitter-xxx.appspot.com",
+  messagingSenderId: "xxxxxxxxxx",
+  appId: "xxxxxxx",
 };
+
 const app = initializeApp(firebaseConfig);
+
+export default app;
