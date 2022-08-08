@@ -8,8 +8,16 @@ function Detail(props) {
   let { id } = useParams();
   let 찾은상품 = props.shoes.find((x) => x.id == id);
   let [alert, setAlert] = useState(true);
-  let [탭, 탭변경] = useState(2);
+  let [탭, 탭변경] = useState(0);
   let dispatch = useDispatch();
+
+  useEffect(() => {
+    let 꺼낸거 = localStorage.getItem("watched");
+    꺼낸거 = JSON.parse(꺼낸거);
+    꺼낸거.push(찾은상품.id);
+    localStorage.setItem("watched", JSON.stringify(꺼낸거));
+  }, []);
+
   useEffect(() => {
     let a = setTimeout(() => {
       setAlert(false);

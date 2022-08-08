@@ -6,35 +6,47 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Detail from "./routes/Detail";
 import axios from "axios";
 import Cart from "./routes/Cart";
+import { useQuery } from "react-query";
 
 function App() {
   useEffect(() => {
     localStorage.setItem("watched", JSON.stringify([]));
   }, []);
 
-  let obg = { name: "kim" };
-  localStorage.setItem("data", JSON.stringify(obg));
-  let 꺼낸거 = localStorage.getItem("data");
-  console.log(꺼낸거);
-  console.log(JSON.parse(꺼낸거).name);
-
   let [shoes, setShoes] = useState(data);
   let [재고] = useState([10, 11, 12]);
   let navigate = useNavigate();
 
+  let result = useQuery("작명", () =>
+    axios.get("https://codingapple1.github.io/userdata.json").then((a) => {
+      return a.data;
+    })
+  );
+
   return (
     <div className="App">
       <Navbar bg="lgiht" variant="light">
-        <Container className="main">
-          <Navbar.Brand href="#home" className="home">
-            ABC Mart
-          </Navbar.Brand>
-          <Nav.Link as={Link} to="/">
-            Home
-          </Nav.Link>
-          <Nav.Link as={Link} to="/detail">
-            Detail
-          </Nav.Link>
+        <Container>
+          <Navbar.Brand href="#home">ABC Mart</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              Cart
+            </Nav.Link>
+          </Nav>
+          <Nav className="ms-auto">
+            {result.isLoading ? "로딩중" : result.data.name}
+          </Nav>
         </Container>
       </Navbar>
 
