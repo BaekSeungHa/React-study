@@ -23,7 +23,6 @@ function Cart() {
       >
         버튼
       </button>
-
       <Table>
         <thead>
           <tr>

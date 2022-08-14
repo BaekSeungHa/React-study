@@ -40,7 +40,6 @@ function App() {
           <Nav className="ms-auto">h1</Nav>
         </Container>
       </Navbar>
-
       <Routes>
         <Route
           path="/"
