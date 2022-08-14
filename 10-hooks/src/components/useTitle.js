@@ -6,7 +6,8 @@ const useTitle = (initialTitle) => {
     const htmlTitle = document.querySelector("title");
     htmlTitle.innerText = title;
   };
-
+  
+  
   useEffect(updateTitle, [title]);
   return setTitle;
 };
