@@ -16,6 +16,7 @@ function Cart() {
         {a.name}
         {a.age}의 장바구니
       </h6>
+
       <button
         onClick={() => {
           dispatch(increase(100));
@@ -23,6 +24,7 @@ function Cart() {
       >
         버튼
       </button>
+
       <Table>
         <thead>
           <tr>

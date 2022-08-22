@@ -15,20 +15,21 @@ function App() {
   let [shoes, setShoes] = useState(data);
   let [재고] = useState([10, 11, 12]);
   let navigate = useNavigate();
-
+  let [count, setCount] = useState(1);
   return (
     <div className="App">
       <Navbar bg="lgiht" variant="light">
         <Container>
-          <Navbar.Brand href="#home">ABC Mart</Navbar.Brand>
+          <Navbar.Brand href="/">ABC Mart</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link
               onClick={() => {
-                navigate("/");
+                navigate(-1);
               }}
             >
               Home
             </Nav.Link>
+
             <Nav.Link
               onClick={() => {
                 navigate("/cart");
@@ -40,6 +41,7 @@ function App() {
           <Nav className="ms-auto">h1</Nav>
         </Container>
       </Navbar>
+
       <Routes>
         <Route
           path="/"
@@ -49,18 +51,21 @@ function App() {
               <div className="container">
                 <div className="row">
                   {shoes.map((a, i) => {
-                    return <Card shoes={shoes[i]} i={i}></Card>;
+                    return <Card shoes={shoes[i]} i={i} key={i}></Card>;
                   })}
                 </div>
               </div>
               <button
                 onClick={() => {
-                  axios
-                    .get("https://codingapple1.github.io/shop/data2.json")
-                    .then((결과) => {
-                      let copy = [...shoes, ...결과.data];
-                      setShoes(copy);
-                    });
+                  setCount(count + 1);
+                  if (count === 1) {
+                    axios
+                      .get("https://codingapple1.github.io/shop/data2.json")
+                      .then((결과) => {
+                        let copy = [...shoes, ...결과.data];
+                        setShoes(copy);
+                      });
+                  }
                 }}
               >
                 더보기
@@ -69,6 +74,7 @@ function App() {
           }
         />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+        <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
@@ -84,8 +90,14 @@ function App() {
 
   function Card(props) {
     let navigate = useNavigate();
+    console.log(props.i);
     return (
-      <div className="col-md-4">
+      <div
+        className="col-md-4"
+        onClick={() => {
+          navigate(`/detail/${props.i}`);
+        }}
+      >
         <img
           src={
             "https://codingapple1.github.io/shop/shoes" + (props.i + 1) + ".jpg"

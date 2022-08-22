@@ -1,176 +1,170 @@
-/* eslint-disable*/
-
-import "./App.css";
 import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
-  let post = "대구 라면 맛집";
   let [글제목, 글제목변경] = useState([
-    "오우 저치기~",
-    "외쳐 수찬갓",
-    "쵸비우승",
+    "남자 코트 추천",
+    "이렇게",
+    "쉽게 가르쳐준다고?",
   ]);
-  let [따봉, 따봉변경] = useState([0, 0, 0]); //따봉
-  let [modal, setModal] = useState(false); //모달
-  let [title, setTitle] = useState(0); //제목
-  let [입력값, 입력값변경] = useState(""); //input에 대한 입력값
-  let [writeDate, setWriteDate] = useState(""); //??
+
+  console.log(글제목);
+
+  let [따봉, 따봉변경] = useState(0);
+
+  let [modal, modal변경] = useState(false);
+
+  let [누른제목, 누른제목변경] = useState(0);
+
+  let [입력값, 입력값변경] = useState("");
+
+  function 제목바꾸기() {
+    // 값을 바꾸려고 복제 후 다시 대입
+    // deepcopy를 해서 수정해야 한다 그냥 복제(=) 를 하면 값 공유가 된다
+    let newArray = [...글제목];
+    // deepcopy는 값 공유가 안되고 별개의 복사를 한다
+    newArray[0] = "여자코트 추천";
+    글제목변경(newArray);
+    // 글제목변경(['여자 코트 추천',"이렇게","쉽게 가르쳐준다고?"])
+  }
+
+  // 배열과 push함수를 사용해 for문으로 반복되는 ui를 출력할 수 있다
+  // function 반복된ui(){
+  //   var 어레이 = [];
+  //   for (var i = 0;i<3;i++){
+  //     어레이.push(<div>안녕</div>);
+  //   }
+  //   return 어레이;
+  // }
+
   return (
     <div className="App">
       <div className="black-nav">
-        <h4>tech blog</h4>
+        <div>Tech blog</div>
       </div>
 
-      <button
-        onClick={() => {
-          let copy = [...글제목];
-          copy[0] = "역시이상호";
-          글제목변경(copy);
-        }}
-      >
-        역시이상호로 바꾸기
-      </button>
-
-      {글제목.map(function (a, i) {
-        //글제목 갯수만큼 html생성
+      {글제목.map(function (글, i) {
         return (
           <div className="list" key={i}>
-            <h4
+            <h3
               onClick={() => {
-                //제목 클릭시 모달을 i번째 modal을 띄워줌
-                setModal(!modal);
-                setTitle(i);
+                누른제목변경(i);
               }}
             >
-              {글제목[i]}
+              {" "}
+              {글}
               <span
-                onClick={(e) => {
-                  e.stopPropagation(); //상위html로 가는 랜더링을 막아준다
-                  let copy = [...따봉]; //따봉 복사
-                  copy[i] = copy[i] + 1; //복사한 i번째 따봉을 + 1해줌
-                  따봉변경(copy);
+                onClick={() => {
+                  따봉변경(따봉 + 1);
                 }}
               >
                 👍
               </span>
-              {따봉[i]}
-            </h4>
-            <p>8월3일 </p>
-
-            <button
-              onClick={() => {
-                //삭제
-                let copy = [...글제목];
-                copy.splice(i, 1); //splice는 삭제할 항목
-                글제목변경(copy);
-              }}
-            >
-              삭제
-            </button>
+              {따봉}
+            </h3>
+            <p>2월 18일 발행</p>
+            <hr />
           </div>
         );
       })}
 
-      <input
-        onChange={(e) => {
-          입력값변경(e.target.value);
-        }}
-      />
+      {/* <button onClick={제목바꾸기}>버튼</button>
+      <div className="list">
+        <h3>
+          {글제목[0]}
+          <span
+            onClick={function i() {
+              따봉변경((따봉 += 1));
+              console.log(따봉);
+            }}
+          >
+            👍
+          </span>
+          {따봉}
+        </h3>
+        <p>2월 17일 발행</p>
+        <hr />
+      </div>
+      <div className="list">
+        <h3> {글제목[1]} </h3>
+        <p>2월 17일 발행</p>
+        <hr />
+      </div>
+      <div className="list">
+        <h3>
+          {" "}
+          {글제목[2]}{" "}
+        </h3>
+        <p>2월 17일 발행</p>
+        <hr />
+      </div> */}
+
+      <div className="publish">
+        <input
+          onChange={(e) => {
+            입력값변경(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            // console.log(글제목.unshift(입력값))
+
+            let newArray = [...글제목];
+            newArray.unshift(입력값);
+            글제목변경(newArray);
+            //왜 입력값을 변경해야지 적용이 될까
+          }}
+        >
+          저장
+        </button>
+      </div>
+
+      {/* <input onChange={(e) => { 입력값변경(e.target.value) }}/> */}
 
       <button
         onClick={() => {
-          let copy = [...글제목];
-          입력값 == "" ? null : copy.unshift(입력값);
-          글제목변경(copy);
-
-          let copycount = [...like];
-          입력값 == "" ? null : copycount.unshift(0);
-          setlike(copycount);
-
-          let copyWriteDate = [...writeDate];
-          const now = new Date();
-          const month = now.getMonth() + 1;
-          const date = now.getDate();
-
-          copyWriteDate == ""
-            ? null
-            : copyWriteDate.unshift(`${month}월 ${date}일`);
-          setWriteDate(copyWriteDate);
+          modal변경(!modal);
         }}
       >
-        story upload
+        열고닫기
       </button>
 
-      {modal == true ? <Modal title={title} 글제목={글제목} /> : null}
+      {/* 반복문을 사용하려면 map함수를 사용해야 한다 */}
+      {/* 글제목 이 결국 반복해야할 개수이기 때문에 글제목에 map함수를 사용 */}
+
+      {/* 따봉이 여러 개 모두 똑같은 따봉을 사용해서 따봉 개수가 같다 */}
+
+      {/* <input onChange={ (e) => {입력값변경(e.target.value)}}/> */}
+
+      {/* ----------------- */}
+
+      {/* 모달창을 만든다고 할 때 if문(삼항연산자)을 사용할 수 있다 */}
+      {/* state에 모달창을 띄울 스위치를 만든다 */}
+      {modal === true ? (
+        <Modal 글제목={글제목} 누른제목={누른제목}></Modal>
+      ) : null}
+
+      {/* <div className='modal1'>
+          <h2>제목</h2>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div> */}
     </div>
   );
+}
 
-  //Modal state만들기
-  function Modal(props) {
-    return (
-      <div className="modal">
-        <h4>{props.글제목[props.title]}</h4>
-        <p>날짜</p>
-        <p>상세내용</p>
-        <button>글수정</button>
-      </div>
-    );
-  }
+// 이렇게 modal이라는 function을 밖에서 선언했는데,
+// 다른 function안에 있는 값을 가져오려면
+// props를 사용할 수 있다
+function Modal(props) {
+  return (
+    <div className="modal1">
+      <h2>{props.글제목[props.누른제목]}</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
 }
 
 export default App;
-
-/* <button onClick={orderTitle}>가나다순으로 정렬하기</button> */
-
-// function orderTitle() {
-
-//   let newOrder = [...title].sort();
-//   setTitle(newOrder);
-// }
-/* <button
-        onClick={() => {
-          let copy = [...title];
-          copy[0] = "여자 코트 추천";
-          setTitle(copy);
-        }}
-      >
-        글수정
-      </button> */
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-/* <div className="list">
-        <h4>
-          {title[0]}
-          <span
-            onClick={() => {
-              따봉변경(따봉 + 1);
-            }}
-          >
-            
-          </span>
-          {따봉}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4>{title[1]}</h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className="list">
-        <h4
-          onClick={() => {
-            setModal(true);
-          }}
-        >
-          {title[2]}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div> */
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//return()안에는 병룔로
-//태그 2개 이상 기입금지
-//map //1. array 자료 갯수만큼 함수안의 코드 실행해줌
-//2. 함수의 파라미터는 array안에 있던 자료임
-//3. return에 뭐 적으면 array로 담아줌
-//함수는 return문 밖에서 사용

@@ -15,8 +15,8 @@ function Detail(props) {
     let 꺼낸거 = localStorage.getItem("watched");
     꺼낸거 = JSON.parse(꺼낸거);
     꺼낸거.push(찾은상품.id);
-    꺼낸거 = new Set(꺼낸거)
-    꺼낸거 = Array.from(꺼낸거)
+    꺼낸거 = new Set(꺼낸거);
+    꺼낸거 = Array.from(꺼낸거);
     localStorage.setItem("watched", JSON.stringify(꺼낸거));
   }, []);
 
@@ -31,14 +31,14 @@ function Detail(props) {
 
   return (
     <div className="container">
-      {alert == true ? (
+      {alert === true ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
 
       <div className="row mb-5">
         <div className="col-md-6">
           <img
-            src="https://codingapple1.github.io/shop/shoes1.jpg"
+            src={`https://codingapple1.github.io/shop/shoes${++id}.jpg`}
             width="100%"
           />
         </div>
