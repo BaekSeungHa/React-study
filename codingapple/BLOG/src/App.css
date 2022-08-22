@@ -6,20 +6,24 @@ body {
   font-family: "nanumsquare";
 }
 
+div {
+  box-sizing: border-box;
+}
+
 .modal {
   margin-top: 20px;
   padding: 20px;
   background: #eee;
+  text-align-last: left;
 }
 
 .black-nav {
-  background: black;
-  width: 100%;
   display: flex;
-  color: white;
-  padding: 20px;
-  font-weight: 600;
+  background: orange;
+  color: blue;
+  padding-left: 20px;
   font-size: 20px;
+  border: 1px solid black;
 }
 
 .list {
