@@ -19,18 +19,17 @@ div {
 
 .black-nav {
   display: flex;
-  background: orange;
-  color: blue;
+  background: black;
+  color: white;
   padding-left: 20px;
   font-size: 20px;
   border: 1px solid black;
 }
 
 .list {
-  margin-top: 30px;
-  text-align: left;
   padding-left: 20px;
-  padding-right: 20px;
+  text-align: left;
+  border-bottom: 1px solid grey;
 }
 
 .App-logo {

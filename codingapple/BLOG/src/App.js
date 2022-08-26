@@ -12,7 +12,7 @@ function App() {
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [입력값, 입력값변경] = useState("");
-
+  let [writeDate, setWriteDate] = useState();
   return (
     <div className="App">
       <div className="black-nav">
@@ -52,7 +52,7 @@ function App() {
               </span>
               {따봉[i]}
             </h4>
-            <p>8월3일</p>
+            <p>{writeDate}</p>
 
             <button
               onClick={() => {
@@ -76,8 +76,25 @@ function App() {
       <button
         onClick={() => {
           let copy = [...글제목];
-          copy.unshift(입력값);
+          if (입력값 !== "") {
+            copy.unshift(입력값);
+          }
           글제목변경(copy);
+
+          let copycount = [...따봉];
+          if (입력값 !== "") {
+            copycount.unshift(0);
+          }
+          따봉변경(copycount);
+
+          let copyWriteDate = [...writeDate];
+          const now = new Date();
+          const month = now.getMonth() + 1;
+          const date = now.getDate();
+          if (copyWriteDate !== "") {
+            copyWriteDate.unshift(`${month}월 ${date}일`);
+          }
+          setWriteDate(copyWriteDate);
         }}
       >
         글발행
