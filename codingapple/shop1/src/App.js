@@ -8,6 +8,13 @@ import axios from "axios";
 import Cart from "./routes/Cart";
 
 function App() {
+  let result = useQuery("작명", () =>
+    axios.get(
+      "https://codingapple1.github.io/userdata.json".then((a) => {
+        return a.data;
+      })
+    )
+  );
   useEffect(() => {
     localStorage.setItem("watched", JSON.stringify([]));
   }, []);
